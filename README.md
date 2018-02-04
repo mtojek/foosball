@@ -1,1 +1,1 @@
-# table-football-scoreboard
+# foosball
