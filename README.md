@@ -2,6 +2,10 @@
 
 > Online Foosball Scoreboard for your office team
 
+## Project status
+
+It's currently **in progress**, please do not deploy it until finished.
+
 ## Build Setup
 
 ``` bash
