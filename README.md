@@ -1,6 +1,6 @@
 # foosball
 
-> Foosball Scores
+> Online Foosball Scoreboard for your office team
 
 ## Build Setup
 
