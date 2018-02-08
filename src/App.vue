@@ -3,7 +3,9 @@
     <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
       <div class="container">
         <div class="navbar-brand">
-          <a class="navbar-item" href="#"><b>foosball</b></a>
+          <a class="navbar-item" href="#">
+            <span class="app-name">foosball</span>
+          </a>
           <div class="navbar-burger burger" data-target="navMenu">
             <span></span>
             <span></span>
@@ -58,4 +60,6 @@ document.addEventListener('DOMContentLoaded', () => {
 <style lang="sass">
   @import '../node_modules/bulma/bulma.sass'
 
+  span.app-name
+    font-weight: bold
 </style>
