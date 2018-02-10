@@ -1,14 +1,14 @@
 <template>
-  <div class="hello">
-    Hello world!
+  <div class="leaderboard">
+    Leaderboard
   </div>
 </template>
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: 'Leaderboard',
 };
 </script>
 
-<style scoped>
+<style>
 </style>
