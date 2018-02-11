@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Leaderboard from '@/components/Leaderboard';
+import Home from '@/components/Home';
 import Matches from '@/components/Matches';
 import Players from '@/components/Players';
 
@@ -11,8 +11,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Leaderboard',
-      component: Leaderboard,
+      name: 'Home',
+      component: Home,
     },
     {
       path: '/matches',
