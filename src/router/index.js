@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Home from '@/components/Home';
-import Matches from '@/components/Matches';
-import Players from '@/components/Players';
+import Home from '@/components/home/Home';
+import Matches from '@/components/matches/Matches';
+import Players from '@/components/players/Players';
 
 
 Vue.use(Router);

@@ -2,8 +2,8 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import firebase from 'firebase';
 import Vue from 'vue';
-import App from './App';
-import router from './router';
+import App from '@/components/app/App';
+import router from '@/router';
 
 Vue.config.productionTip = false;
 

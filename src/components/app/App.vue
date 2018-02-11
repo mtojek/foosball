@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import NavBar from '@/components/NavBar';
+import NavBar from '@/components/app/NavBar';
 
 export default {
   components: {
@@ -19,6 +19,6 @@ export default {
 </script>
 
 <style lang="sass">
-  @import '../node_modules/bulma/bulma.sass'
+  @import '../../../node_modules/bulma/bulma.sass'
 
 </style>
