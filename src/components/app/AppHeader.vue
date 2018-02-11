@@ -18,8 +18,8 @@
             <a class="navbar-item" href="/#/players">Players</a>
           </div>
           <div class="navbar-end">
-            <a class="navbar-item" href="#">Add match</a>
-            <a class="navbar-item" href="#">Sign in</a>
+            <a class="navbar-item" href="#">Add Match</a>
+            <a class="navbar-item" href="#">Sign In</a>
           </div>
         </div>
       </div>

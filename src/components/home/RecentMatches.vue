@@ -1,7 +1,7 @@
 <template>
   <div class="recent-matches">
     <div class="section">
-      <h1 class="title">Recent matches</h1>
+      <h1 class="title">Recent Matches</h1>
       <div class="body">
         TODO
       </div>
