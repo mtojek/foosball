@@ -18,8 +18,8 @@
             <router-link to="/players" class="navbar-item">Players</router-link>
           </div>
           <div class="navbar-end">
-            <router-link to="/add_match" class="navbar-item">Add Match</router-link>
-            <router-link to="/sign_in" class="navbar-item">Sign In</router-link>
+            <router-link to="/matches/new" class="navbar-item">New Match</router-link>
+            <router-link to="/auth/sign_in" class="navbar-item">Sign In</router-link>
           </div>
         </div>
       </div>

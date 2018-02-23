@@ -1,8 +1,8 @@
 <template>
-  <div class="add-match">
+  <div class="new-match">
     <div class="container">
       <div class="section">
-        <h1 class="title">Add Match</h1>
+        <h1 class="title">New Match</h1>
         <div class="body">
           <form>
             <div class="field">
@@ -67,7 +67,7 @@
 
 <script>
 export default {
-  name: 'AddMatch',
+  name: 'NewMatch',
 };
 </script>
 
