@@ -14,12 +14,12 @@
         </div>
         <div class="navbar-menu" id="navMenu">
           <div class="navbar-start">
-            <a class="navbar-item" href="/#/matches">Matches</a>
-            <a class="navbar-item" href="/#/players">Players</a>
+            <router-link to="/matches" class="navbar-item">Matches</router-link>
+            <router-link to="/players" class="navbar-item">Players</router-link>
           </div>
           <div class="navbar-end">
-            <a class="navbar-item" href="#">Add Match</a>
-            <a class="navbar-item" href="#">Sign In</a>
+            <router-link to="/add_match" class="navbar-item">Add Match</router-link>
+            <router-link to="/sign_in" class="navbar-item">Sign In</router-link>
           </div>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import AddMatch from '@/components/matches/AddMatch';
 import Home from '@/components/home/Home';
 import Matches from '@/components/matches/Matches';
 import Players from '@/components/players/Players';
@@ -23,6 +24,11 @@ export default new Router({
       path: '/players',
       name: 'Players',
       component: Players,
+    },
+    {
+      path: '/add_match',
+      name: 'AddMatch',
+      component: AddMatch,
     },
   ],
 });
