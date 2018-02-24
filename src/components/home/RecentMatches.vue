@@ -1,46 +1,44 @@
 <template>
   <div class="recent-matches">
-    <div class="section">
-      <h1 class="title">Recent Matches</h1>
-      <div class="body">
-        <table class="table">
-          <tbody>
-            <tr>
-              <td class="name">John Smith</td>
-              <td class="score" rowspan="2">
-                3 : 0
-              </td>
-              <td class="name">Jerry Ford</td>
-            </tr>
-            <tr>
-              <td class="name">Bevis Titus</td>
-              <td class="name">Nash Nicky</td>
-            </tr>
-            <tr>
-              <td class="name">John Smith</td>
-              <td class="score" rowspan="2">
-                1 : 2
-              </td>
-              <td class="name">Jerry Ford</td>
-            </tr>
-            <tr>
-              <td class="name">Bevis Titus</td>
-              <td class="name">Nash Nicky</td>
-            </tr>
-            <tr>
-              <td class="name">John Smith</td>
-              <td class="score" rowspan="2">
-                2 : 2
-              </td>
-              <td class="name">Jerry Ford</td>
-            </tr>
-            <tr>
-              <td class="name">Bevis Titus</td>
-              <td class="name">Nash Nicky</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+    <h1 class="title">Recent Matches</h1>
+    <div class="body">
+      <table class="table">
+        <tbody>
+        <tr>
+          <td class="name">John Smith</td>
+          <td class="score" rowspan="2">
+            3 : 0
+          </td>
+          <td class="name">Jerry Ford</td>
+        </tr>
+        <tr>
+          <td class="name">Bevis Titus</td>
+          <td class="name">Nash Nicky</td>
+        </tr>
+        <tr>
+          <td class="name">John Smith</td>
+          <td class="score" rowspan="2">
+            1 : 2
+          </td>
+          <td class="name">Jerry Ford</td>
+        </tr>
+        <tr>
+          <td class="name">Bevis Titus</td>
+          <td class="name">Nash Nicky</td>
+        </tr>
+        <tr>
+          <td class="name">John Smith</td>
+          <td class="score" rowspan="2">
+            2 : 2
+          </td>
+          <td class="name">Jerry Ford</td>
+        </tr>
+        <tr>
+          <td class="name">Bevis Titus</td>
+          <td class="name">Nash Nicky</td>
+        </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </template>
