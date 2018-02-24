@@ -1,13 +1,11 @@
 <template>
   <div class="home">
-    <div class="container">
-      <div class="columns">
-        <div class="column">
-          <leaderboard/>
-        </div>
-        <div class="column">
-          <recent-matches/>
-        </div>
+    <div class="columns">
+      <div class="column">
+        <leaderboard/>
+      </div>
+      <div class="column">
+        <recent-matches/>
       </div>
     </div>
   </div>

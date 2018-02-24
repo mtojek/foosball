@@ -1,15 +1,17 @@
 <template>
-  <footer class="footer">
-    <div class="container">
-      <div class="content has-text-centered">
-        <p>
-          Made with <a href="https://bulma.io/" target="_new">bulma</a>
-          |
-          GitHub: <a href="https://github.com/mtojek/foosball" target="_new">mtojek/foosball</a>
-        </p>
+  <div class="app-footer">
+    <footer class="footer">
+      <div class="container">
+        <div class="content has-text-centered">
+          <p>
+            Made with <a href="https://bulma.io/" target="_new">bulma</a>
+            |
+            GitHub: <a href="https://github.com/mtojek/foosball" target="_new">mtojek/foosball</a>
+          </p>
+        </div>
       </div>
-    </div>
-  </footer>
+    </footer>
+  </div>
 </template>
 
 <script>
