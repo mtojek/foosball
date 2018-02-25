@@ -1,0 +1,13 @@
+{
+  "rules": {
+    "players": {
+      "$uid": {
+        ".validate": "newData.hasChildren(['name']) && newData.child('name').val().length > 0"
+      },
+      ".read": "true",
+      ".write": "auth != null"
+    },
+    ".read": "auth != null",
+    ".write": "auth != null"
+  }
+}
