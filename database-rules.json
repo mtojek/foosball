@@ -1,13 +1,54 @@
 {
   "rules": {
+    "matches": {
+      "$uid": {
+        "team_a": {
+          "first": {
+            ".validate": "newData.isString() && newData.val().length > 0"
+          },
+          "second": {
+            ".validate": "newData.isString() && newData.val().length > 0"
+          },
+          "score": {
+            ".validate": "newData.isNumber() && newData.val() > -1"
+          },
+          ".validate": "newData.hasChildren(['first','second', 'score'])"
+        },
+        "team_b": {
+          "first": {
+            ".validate": "newData.isString() && newData.val().length > 0"
+          },
+          "second": {
+            ".validate": "newData.isString() && newData.val().length > 0"
+          },
+          "score": {
+            ".validate": "newData.isNumber() && newData.val() > -1"
+          },
+          ".validate": "newData.hasChildren(['first','second', 'score'])"
+        },
+        ".validate": "newData.hasChildren(['team_a','team_b']) && 
+          newData.child('team_a').child('first').val() != newData.child('team_a').child('second').val() &&
+          newData.child('team_a').child('first').val() != newData.child('team_b').child('first').val() &&
+          newData.child('team_a').child('first').val() != newData.child('team_b').child('second').val() &&
+          newData.child('team_a').child('first').val() != newData.child('team_a').child('second').val() && 
+          newData.child('team_a').child('second').val() != newData.child('team_b').child('first').val() &&
+	  newData.child('team_a').child('second').val() != newData.child('team_b').child('second').val() && 
+          newData.child('team_b').child('first').val() != newData.child('team_b').child('second').val()
+        "},
+      ".read": "true"
+    },
     "players": {
       "$uid": {
-        ".validate": "newData.hasChildren(['name']) && newData.child('name').val().length > 0"
+        "name": {
+          ".validate": "newData.isString() && newData.val().length > 0"
+        },
+        ".validate": "newData.hasChildren(['name'])"
       },
-      ".read": "true",
-      ".write": "auth != null"
+      ".read": "true"
     },
     ".read": "auth != null",
     ".write": "auth != null"
   }
 }
+
+
