@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import db from '@/firebaseapp';
+import db from '@/firebaseapp/database';
 
 export default {
   name: 'RecentMatches',
