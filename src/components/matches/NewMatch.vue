@@ -7,18 +7,12 @@
           <label class="label">Team A</label>
           <div class="select">
             <select>
-              <option>John Smith</option>
-              <option>Jerry Ford</option>
-              <option>Bevis Titus</option>
-              <option>Nash Nicky</option>
+              <option v-for="(player, index) in players" :key="index">{{ player.name }} </option>
             </select>
           </div>
           <div class="select">
             <select>
-              <option>Jerry Ford</option>
-              <option>John Smith</option>
-              <option>Bevis Titus</option>
-              <option>Nash Nicky</option>
+              <option v-for="(player, index) in players" :key="index">{{ player.name }} </option>
             </select>
           </div>
         </div>
@@ -26,18 +20,12 @@
           <label class="label">Team B</label>
           <div class="select">
             <select>
-              <option>Bevis Titus</option>
-              <option>John Smith</option>
-              <option>Jerry Ford</option>
-              <option>Nash Nicky</option>
+              <option v-for="(player, index) in players" :key="index">{{ player.name }} </option>
             </select>
           </div>
           <div class="select">
             <select>
-              <option>Nash Nicky</option>
-              <option>John Smith</option>
-              <option>Jerry Ford</option>
-              <option>Bevis Titus</option>
+              <option v-for="(player, index) in players" :key="index">{{ player.name }} </option>
             </select>
           </div>
         </div>
@@ -62,8 +50,13 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   name: 'NewMatch',
+  computed: {
+    ...mapGetters(['players']),
+  },
 };
 </script>
 

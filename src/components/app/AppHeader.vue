@@ -19,6 +19,7 @@
           </div>
           <div class="navbar-end">
             <router-link to="/matches/new" class="navbar-item">New Match</router-link>
+            <router-link to="/players/new" class="navbar-item">New Player</router-link>
             <router-link to="/auth/sign_in" class="navbar-item">Sign In</router-link>
           </div>
         </div>

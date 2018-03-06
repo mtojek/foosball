@@ -3,40 +3,18 @@
     <h1 class="title">Recent Matches</h1>
     <div class="body">
       <table class="table">
-        <tbody>
-        <tr>
-          <td class="name">John Smith</td>
-          <td class="score" rowspan="2">
-            3 : 0
-          </td>
-          <td class="name">Jerry Ford</td>
-        </tr>
-        <tr>
-          <td class="name">Bevis Titus</td>
-          <td class="name">Nash Nicky</td>
-        </tr>
-        <tr>
-          <td class="name">John Smith</td>
-          <td class="score" rowspan="2">
-            1 : 2
-          </td>
-          <td class="name">Jerry Ford</td>
-        </tr>
-        <tr>
-          <td class="name">Bevis Titus</td>
-          <td class="name">Nash Nicky</td>
-        </tr>
-        <tr>
-          <td class="name">John Smith</td>
-          <td class="score" rowspan="2">
-            2 : 2
-          </td>
-          <td class="name">Jerry Ford</td>
-        </tr>
-        <tr>
-          <td class="name">Bevis Titus</td>
-          <td class="name">Nash Nicky</td>
-        </tr>
+        <tbody v-for="(match, index) in recentMatches.slice().reverse()" :key="index">
+          <tr>
+            <td class="name">{{ match.team_a.first }}</td>
+            <td class="score" rowspan="2">
+              {{ match.team_a.score }} : {{ match.team_b.score }}
+            </td>
+            <td class="name">{{ match.team_b.first }}</td>
+          </tr>
+          <tr>
+            <td class="name">{{ match.team_a.second }}</td>
+            <td class="name">{{ match.team_b.second }}</td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -44,8 +22,13 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   name: 'RecentMatches',
+  computed: {
+    ...mapGetters(['recentMatches']),
+  },
 };
 </script>
 
@@ -56,10 +39,17 @@ export default {
     font-size: 1.5rem
     font-weight: bold
     vertical-align: middle
-  tr:nth-child(odd)
-    td.name
-      border: none
-  tr:nth-last-child(2)
+  tbody
+    tr:first-child
+      td.name
+        border: none
+    tr:nth-child(2)
+      td.name
+        border-bottom: 1px solid #dbdbdb
+  tbody:last-child
+    tr:nth-child(2)
+      td.name
+        border-bottom: none
     td.score
       border: none
 </style>
