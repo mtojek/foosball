@@ -22,12 +22,12 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import db from '@/firebaseapp';
 
 export default {
   name: 'RecentMatches',
-  computed: {
-    ...mapGetters(['recentMatches']),
+  firebase: {
+    recentMatches: db.ref('matches').orderByKey().limitToLast(10),
   },
 };
 </script>

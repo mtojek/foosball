@@ -50,12 +50,12 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import db from '@/firebaseapp';
 
 export default {
   name: 'NewMatch',
-  computed: {
-    ...mapGetters(['players']),
+  firebase: {
+    players: db.ref('players').orderByChild('name'),
   },
 };
 </script>

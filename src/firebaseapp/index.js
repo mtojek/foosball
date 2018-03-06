@@ -1,3 +1,9 @@
+import firebase from 'firebase';
+import Vue from 'vue';
+import VueFire from 'vuefire';
+
+Vue.use(VueFire);
+
 const config = {
   apiKey: 'AIzaSyC_r7-a63XcvHkbet3UnsqZaP0DKIJpLqE',
   authDomain: 'foosball-77b90.firebaseapp.com',
@@ -7,4 +13,7 @@ const config = {
   messagingSenderId: '642361302451',
 };
 
-export default config;
+Vue.config.productionTip = false;
+firebase.initializeApp(config);
+
+export default firebase.database();
