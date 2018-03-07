@@ -6,6 +6,8 @@
           <p>
             Made with <a href="https://bulma.io/" target="_new">bulma</a>
             |
+            Powered by <a href="https://firebase.google.com/" target="_new">Firebase</a>
+            |
             GitHub: <a href="https://github.com/mtojek/foosball" target="_new">mtojek/foosball</a>
           </p>
         </div>
