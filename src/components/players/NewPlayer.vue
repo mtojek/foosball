@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import db from '@/firebaseapp/database';
+import { db } from '@/firebaseapp/database';
 
 function createNewPlayer() {
   return {

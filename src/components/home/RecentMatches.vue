@@ -2,18 +2,18 @@
   <div class="recent-matches">
     <h1 class="title">Recent Matches</h1>
     <div class="body">
-      <table class="table">
+      <table class="table" v-if="players.length > 0">
         <tbody v-for="(match, index) in recentMatches.slice().reverse()" :key="index">
           <tr>
-            <td class="name">{{ match.team_a.first }}</td>
+            <td class="name">{{ getPlayerName(players, match.team_a.first) }}</td>
             <td class="score" rowspan="2">
               {{ match.team_a.score }} : {{ match.team_b.score }}
             </td>
-            <td class="name">{{ match.team_b.first }}</td>
+            <td class="name">{{ getPlayerName(players, match.team_b.first) }}</td>
           </tr>
           <tr>
-            <td class="name">{{ match.team_a.second }}</td>
-            <td class="name">{{ match.team_b.second }}</td>
+            <td class="name">{{ getPlayerName(players, match.team_a.second) }}</td>
+            <td class="name">{{ getPlayerName(players, match.team_b.second) }}</td>
           </tr>
         </tbody>
       </table>
@@ -22,12 +22,16 @@
 </template>
 
 <script>
-import db from '@/firebaseapp/database';
+import { db, getPlayerName } from '@/firebaseapp/database';
 
 export default {
   name: 'RecentMatches',
   firebase: {
+    players: db.ref('players'),
     recentMatches: db.ref('matches').orderByChild('timestamp').limitToLast(10),
+  },
+  methods: {
+    getPlayerName,
   },
 };
 </script>
