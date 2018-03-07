@@ -1,5 +1,26 @@
 {
   "rules": {
+    "leaderboard": {
+      "$uid": {
+        "played": {
+          ".validate": "newData.isNumber() && newData.val() > -1"
+        },
+        "won": {
+          ".validate": "newData.isNumber() && newData.val() > -1"
+        },
+        "drawn": {
+          ".validate": "newData.isNumber() && newData.val() > -1"
+        },
+        "lost": {
+          ".validate": "newData.isNumber() && newData.val() > -1"
+        },
+        "points": {
+          ".validate": "newData.isNumber() && newData.val() > -1"
+        }
+      },
+      ".read": "true",
+      ".write": "true"
+    },
     "matches": {
       "$uid": {
         "team_a": {

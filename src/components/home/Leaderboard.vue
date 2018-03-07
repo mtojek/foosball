@@ -2,7 +2,7 @@
   <div class="leaderboard">
     <h1 class="title">Leaderboard</h1>
     <div class="body">
-      <table class="table is-hoverable">
+      <table class="table is-hoverable" v-if="players.length > 0">
         <thead>
         <tr>
           <th><abbr title="Position">Pos</abbr></th>
@@ -14,43 +14,16 @@
           <th><abbr title="Points">Pts</abbr></th>
         </tr>
         </thead>
-        <tbody>
-        <tr>
-          <td>1</td>
-          <td>John Smith</td>
-          <td>13</td>
-          <td>3</td>
-          <td>1</td>
-          <td>2</td>
-          <td>21</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>Jerry Ford</td>
-          <td>7</td>
-          <td>3</td>
-          <td>1</td>
-          <td>2</td>
-          <td>19</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>Bevis Titus</td>
-          <td>6</td>
-          <td>2</td>
-          <td>1</td>
-          <td>2</td>
-          <td>18</td>
-        </tr>
-        <tr>
-          <td>4</td>
-          <td>Nash Nicky</td>
-          <td>3</td>
-          <td>0</td>
-          <td>1</td>
-          <td>2</td>
-          <td>7</td>
-        </tr>
+        <tbody v-for="(leader, index) in leaderboard.slice().reverse()" :key="index">
+          <tr>
+            <td>{{ index + 1 }}</td>
+            <td>{{ getPlayerName(players, leader['.key']) }}</td>
+            <td>{{ leader.played }}</td>
+            <td>{{ leader.won }}</td>
+            <td>{{ leader.drawn }}</td>
+            <td>{{ leader.lost }}</td>
+            <td>{{ leader.points }}</td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -58,8 +31,17 @@
 </template>
 
 <script>
+import { db, getPlayerName } from '@/firebaseapp/database';
+
 export default {
   name: 'Leaderboard',
+  firebase: {
+    players: db.ref('players'),
+    leaderboard: db.ref('leaderboard').orderByChild('points'),
+  },
+  methods: {
+    getPlayerName,
+  },
 };
 </script>
 
