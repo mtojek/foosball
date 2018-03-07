@@ -26,7 +26,10 @@
           },
           ".validate": "newData.hasChildren(['first','second', 'score'])"
         },
-        ".validate": "newData.hasChildren(['team_a','team_b']) &&
+        "timestamp": {
+          ".validate": "newData.isNumber() && newData.val() > 0"
+        },
+        ".validate": "newData.hasChildren(['team_a','team_b','timestamp']) &&
           newData.child('team_a').child('first').val() != newData.child('team_a').child('second').val() &&
           newData.child('team_a').child('first').val() != newData.child('team_b').child('first').val() &&
           newData.child('team_a').child('first').val() != newData.child('team_b').child('second').val() &&
@@ -34,8 +37,10 @@
           newData.child('team_a').child('second').val() != newData.child('team_b').child('first').val() &&
           newData.child('team_a').child('second').val() != newData.child('team_b').child('second').val() &&
           newData.child('team_b').child('first').val() != newData.child('team_b').child('second').val()"
-        },
-      ".read": "true"
+      },
+      ".indexOn": "timestamp",
+      ".read": "true",
+      ".write": "true"
     },
     "players": {
       "$uid": {

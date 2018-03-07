@@ -27,7 +27,7 @@ import db from '@/firebaseapp/database';
 export default {
   name: 'RecentMatches',
   firebase: {
-    recentMatches: db.ref('matches').orderByKey().limitToLast(10),
+    recentMatches: db.ref('matches').orderByChild('timestamp').limitToLast(10),
   },
 };
 </script>
@@ -38,6 +38,7 @@ export default {
   td.score
     font-size: 1.5rem
     font-weight: bold
+    text-align: center
     vertical-align: middle
   tbody
     tr:first-child

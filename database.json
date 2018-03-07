@@ -10,7 +10,8 @@
         "first": "Nicky N.",
         "second": "Bevis T.",
         "score": 0
-      }
+      },
+      "timestamp": 1
     },
     "1519600181": {
       "team_a": {
@@ -22,7 +23,8 @@
         "first": "Nicky N.",
         "second": "Jerry F.",
         "score": 2
-      }
+      },
+      "timestamp": 2
     }
   },
   "players": {
