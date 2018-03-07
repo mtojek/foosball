@@ -3,9 +3,7 @@
     <h1 class="title">New Match</h1>
     <div class="body">
       <form v-on:submit.prevent="addMatch">
-        <div class="notification is-danger" v-if="errorMessage">
-          {{ errorMessage }}
-        </div>
+        <div class="notification is-danger" v-if="errorMessage">{{ errorMessage }}</div>
         <div class="field">
           <label class="label">Team A</label>
           <div class="select">

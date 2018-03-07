@@ -49,7 +49,8 @@
         },
         ".validate": "newData.hasChildren(['name'])"
       },
-      ".read": "true"
+      ".read": "true",
+      ".write": "true"
     },
     ".read": "auth != null",
     ".write": "auth != null"
