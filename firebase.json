@@ -8,6 +8,7 @@
       "database.json",
       "database-rules.json",
       "firebase.json",
+      "*.sh",
       "**/.*",
       "**/node_modules/**"
     ],
