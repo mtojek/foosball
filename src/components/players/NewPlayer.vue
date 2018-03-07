@@ -3,10 +3,9 @@
     <h1 class="title">New Player</h1>
     <div class="body">
       <form v-on:submit.prevent="addPlayer">
-        <div class="notification is-danger" v-if="statusMessage && status == 'danger'">
-          {{ statusMessage }}
-        </div>
-        <div class="notification is-success" v-if="statusMessage && status == 'success'">
+        <div v-bind:class="['notification',
+          {'is-danger': status == 'danger', 'is-success': status == 'success'}]"
+             v-if="statusMessage">
           {{ statusMessage }}
         </div>
         <div class="field">
