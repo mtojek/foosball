@@ -14,81 +14,13 @@ function createNewLeader() {
   };
 }
 
-function team_a_won(match) {
+function teamAWon(match) {
   return match.team_a.score > match.team_b.score;
 }
 
-function teams_drawn(match) {
+function teamsDrawn(match) {
   return match.team_a.score === match.team_b.score;
 }
-
-function updateTeamAPlayer(stats, match, action) {
-  if (stats === null) {
-    stats = createNewLeader();
-  }
-
-  var k = action === 'create' ? 1 : -1;
-  return {
-    "played": stats.played + k,
-    "won": stats.won + team_a_won(match) * k,
-    "drawn": stats.drawn + teams_drawn(match) * k,
-    "lost": stats.lost + (!team_a_won(match) && !teams_drawn(match)) * k,
-    "points": stats.points + match.team_a.score * k,
-  };
-}
-
-function updateTeamBPlayer(stats, match, action) {
-  if (stats === null) {
-    stats = createNewLeader();
-  }
-  var k = action === 'create' ? 1 : -1;
-  return {
-    "played": stats.played + k,
-    "won": stats.won + (!team_a_won(match) && !teams_drawn(match)) * k,
-    "drawn": stats.drawn + teams_drawn(match) * k,
-    "lost": stats.lost + team_a_won(match) * k,
-    "points": stats.points + match.team_b.score * k,
-  };
-}
-
-exports.onCreateMatch = functions.database.ref('matches/{uid}')
-  .onCreate(event => {
-    const match = event.data.val();
-
-    return Promise.all([
-      database.ref('/leaderboard/' + match.team_a.first)
-        .transaction((stats) => updateTeamAPlayer(stats, match, 'create')),
-      database.ref('/leaderboard/' + match.team_a.second)
-        .transaction((stats) => updateTeamAPlayer(stats, match, 'create')),
-      database.ref('/leaderboard/' + match.team_b.first)
-        .transaction((stats) => updateTeamBPlayer(stats, match, 'create')),
-      database.ref('/leaderboard/' + match.team_b.second)
-        .transaction((stats) => updateTeamBPlayer(stats, match, 'create'))
-    ]).then(() => {
-      console.log('All records updated.');
-      return true;
-    });
-  });
-
-exports.onDeleteMatch = functions.database.ref('matches/{uid}')
-  .onDelete(event => {
-    const match = event.data._data;
-
-    // Team A
-    return Promise.all([
-      database.ref('/leaderboard/' + match.team_a.first)
-        .transaction((stats) => updateTeamAPlayer(stats, match, 'delete')),
-      database.ref('/leaderboard/' + match.team_a.second)
-        .transaction((stats) => updateTeamAPlayer(stats, match, 'delete')),
-      database.ref('/leaderboard/' + match.team_b.first)
-        .transaction((stats) => updateTeamBPlayer(stats, match, 'delete')),
-      database.ref('/leaderboard/' + match.team_b.second)
-        .transaction((stats) => updateTeamBPlayer(stats, match, 'delete'))
-    ]).then(() => {
-      console.log('All records updated.');
-      return true;
-    });
-  });
 
 function calculatePlayerStats(team, oldStats, match) {
   let stats = oldStats;
@@ -98,25 +30,24 @@ function calculatePlayerStats(team, oldStats, match) {
   }
 
   stats.played = stats.played + 1;
-  stats.drawn = stats.drawn + teams_drawn(match);
+  stats.drawn = stats.drawn + teamsDrawn(match);
 
   if (team === 'A') {
-    stats.won = stats.won + team_a_won(match);
-    stats.lost = stats.lost + (!team_a_won(match) && !teams_drawn(match));
+    stats.won = stats.won + teamAWon(match);
+    stats.lost = stats.lost + (!teamAWon(match) && !teamsDrawn(match));
     stats.points = stats.points + match.team_a.score;
   } else {
-    stats.won = stats.won + (!team_a_won(match) && !teams_drawn(match));
-    stats.lost = stats.lost + team_a_won(match);
+    stats.won = stats.won + (!teamAWon(match) && !teamsDrawn(match));
+    stats.lost = stats.lost + teamAWon(match);
     stats.points = stats.points + match.team_b.score;
   }
   return stats;
 }
 
-exports.onUpdateMatch = functions.database.ref('matches/{uid}')
+exports.onUpdateLeaderboard = functions.database.ref('matches/{uid}')
   .onWrite(event => {
     const leaders = {};
-    const matchesRef = event.data.ref.parent;
-    return matchesRef.once('value', snapshot => {
+    return event.data.ref.parent.once('value', snapshot => {
       const matches = snapshot.val();
       for (let key in matches) {
         const match = matches[key];
@@ -126,7 +57,7 @@ exports.onUpdateMatch = functions.database.ref('matches/{uid}')
         leaders[match.team_b.second] = calculatePlayerStats('B', leaders[match.team_b.second], match);
       }
     }).then(() => {
-      return database.ref('leaderboard2').update(leaders);
+      return database.ref('leaderboard').update(leaders);
     }).then(() => {
       console.log('Leaderboard has been updated.');
       return true;
