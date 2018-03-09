@@ -32,20 +32,27 @@ function calculatePlayerStats(team, oldStats, match) {
 
 exports.onUpdateLeaderboard = functions.database.ref('matches/{uid}')
   .onWrite(event => {
-    return event.data.ref.parent.once('value')
-      .then(snapshot => {
-        const leaders = {};
-        const matches = snapshot.val();
-        for (let key in matches) {
-          const match = matches[key];
-          leaders[match.team_a.first] = calculatePlayerStats('A', leaders[match.team_a.first], match);
-          leaders[match.team_a.second] = calculatePlayerStats('A', leaders[match.team_a.second], match);
-          leaders[match.team_b.first] = calculatePlayerStats('B', leaders[match.team_b.first], match);
-          leaders[match.team_b.second] = calculatePlayerStats('B', leaders[match.team_b.second], match);
-        }
-        return leaders;
-      })
-      .then(leaders => database.ref('leaderboard').update(leaders))
+    return Promise.all([
+      event.data.ref.parent.once('value'),
+      database.ref('players').once('value'),
+    ]).then(results => {
+      const matches = results[0].val();
+      const players = results[1].val();
+
+      const leaders = {};
+      for (let key in players) {
+        leaders[key] = createNewLeader();
+      }
+
+      for (let key in matches) {
+        const match = matches[key];
+        leaders[match.team_a.first] = calculatePlayerStats('A', leaders[match.team_a.first], match);
+        leaders[match.team_a.second] = calculatePlayerStats('A', leaders[match.team_a.second], match);
+        leaders[match.team_b.first] = calculatePlayerStats('B', leaders[match.team_b.first], match);
+        leaders[match.team_b.second] = calculatePlayerStats('B', leaders[match.team_b.second], match);
+      }
+      return leaders;
+    }).then(leaders => database.ref('leaderboard').update(leaders))
       .then(() => {
         console.log('Leaderboard has been updated.');
         return true;
