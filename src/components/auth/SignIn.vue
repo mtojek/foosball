@@ -9,6 +9,7 @@
 <script>
 import firebase from 'firebase';
 import firebaseui from 'firebaseui';
+import { auth } from '@/firebaseapp/auth';
 
 export default {
   name: 'SignIn',
@@ -23,7 +24,7 @@ export default {
 
     let ui = firebaseui.auth.AuthUI.getInstance();
     if (ui === null) {
-      ui = new firebaseui.auth.AuthUI(firebase.auth());
+      ui = new firebaseui.auth.AuthUI(auth);
     }
     ui.start('#firebaseui-auth-container', uiConfig);
   },

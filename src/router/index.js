@@ -6,6 +6,7 @@ import NewMatch from '@/components/matches/NewMatch';
 import Players from '@/components/players/Players';
 import NewPlayer from '@/components/players/NewPlayer';
 import SignIn from '@/components/auth/SignIn';
+import SignOut from '@/components/auth/SignOut';
 
 Vue.use(Router);
 
@@ -40,6 +41,11 @@ export default new Router({
       path: '/auth/signin',
       name: 'SignIn',
       component: SignIn,
+    },
+    {
+      path: '/auth/signout',
+      name: 'SignOut',
+      component: SignOut,
     },
   ],
 });
