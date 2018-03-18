@@ -5,6 +5,7 @@ import Matches from '@/components/matches/Matches';
 import NewMatch from '@/components/matches/NewMatch';
 import Players from '@/components/players/Players';
 import NewPlayer from '@/components/players/NewPlayer';
+import SignIn from '@/components/auth/SignIn';
 
 Vue.use(Router);
 
@@ -34,6 +35,11 @@ export default new Router({
       path: '/players/new',
       name: 'NewPlayer',
       component: NewPlayer,
+    },
+    {
+      path: '/auth/signin',
+      name: 'SignIn',
+      component: SignIn,
     },
   ],
 });

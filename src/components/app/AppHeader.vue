@@ -18,9 +18,18 @@
             <router-link to="/players" class="navbar-item">Players</router-link>
           </div>
           <div class="navbar-end">
-            <router-link to="/matches/new" class="navbar-item">New Match</router-link>
-            <router-link to="/players/new" class="navbar-item">New Player</router-link>
-            <router-link to="/auth/sign_in" class="navbar-item">Sign In</router-link>
+            <router-link to="/matches/new" class="navbar-item" v-show="isAuthorized(currentUser)">
+              New Match
+            </router-link>
+            <router-link to="/players/new" class="navbar-item" v-show="isAuthorized(currentUser)">
+              New Player
+            </router-link>
+            <router-link to="/auth/signin" class="navbar-item" v-show="!isAuthorized(currentUser)">
+              Sign In
+            </router-link>
+            <router-link to="/auth/signout" class="navbar-item" v-show="isAuthorized(currentUser)">
+              Sign Out
+            </router-link>
           </div>
         </div>
       </div>
@@ -29,8 +38,14 @@
 </template>
 
 <script>
+import { isAuthorized } from '@/firebaseapp/auth';
+
 export default {
   name: 'AppHeader',
+  props: ['currentUser'],
+  methods: {
+    isAuthorized,
+  },
 };
 
 document.addEventListener('DOMContentLoaded', () => {

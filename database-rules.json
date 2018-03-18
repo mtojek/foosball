@@ -18,8 +18,7 @@
           ".validate": "newData.isNumber() && newData.val() > -1"
         }
       },
-      ".read": "true",
-      ".write": "true"
+      ".read": "true"
     },
     "matches": {
       "$uid": {
@@ -60,8 +59,7 @@
           newData.child('team_b').child('first').val() != newData.child('team_b').child('second').val()"
       },
       ".indexOn": "timestamp",
-      ".read": "true",
-      ".write": "true"
+      ".read": "true"
     },
     "players": {
       "$uid": {
@@ -70,8 +68,7 @@
         },
         ".validate": "newData.hasChildren(['name'])"
       },
-      ".read": "true",
-      ".write": "true"
+      ".read": "true"
     },
     ".read": "auth != null",
     ".write": "auth != null"

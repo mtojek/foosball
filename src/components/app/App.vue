@@ -1,6 +1,6 @@
 <template>
-  <div id="app">
-    <app-header/>
+  <div id="app" v-show="isAuthStateLoaded">
+    <app-header :currentUser="currentUser"/>
     <app-main/>
     <app-footer/>
   </div>
@@ -10,14 +10,27 @@
 import AppFooter from '@/components/app/AppFooter';
 import AppHeader from '@/components/app/AppHeader';
 import AppMain from '@/components/app/AppMain';
+import { auth } from '@/firebaseapp/auth';
 
 export default {
+  name: 'App',
   components: {
     AppFooter,
     AppHeader,
     AppMain,
   },
-  name: 'App',
+  data() {
+    return {
+      currentUser: null,
+      isAuthStateLoaded: false,
+    };
+  },
+  mounted() {
+    auth.onAuthStateChanged((user) => {
+      this.currentUser = user;
+      this.isAuthStateLoaded = true;
+    });
+  },
 };
 </script>
 
