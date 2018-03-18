@@ -1,6 +1,8 @@
 <template>
   <div class="players">
-    Players
+    <h1 class="title">Players</h1>
+    <div class="body">
+    </div>
   </div>
 </template>
 
