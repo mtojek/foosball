@@ -13,7 +13,7 @@
         <tr>
           <td>{{ player.name }}</td>
           <td>
-            <button class="button is-small is-primary" v-on:click="deletePlayer(player['.key'])">
+            <button class="button is-small is-danger" v-on:click="deletePlayer(player['.key'])">
               Delete
             </button>
           </td>
