@@ -30,7 +30,7 @@ import { db, getActivePlayers } from '@/firebaseapp/database';
 export default {
   name: 'Players',
   firebase: {
-    players: db.ref('players'),
+    players: db.ref('players').orderByChild('name'),
   },
   methods: {
     deletePlayer(playerId) {
