@@ -18,21 +18,25 @@
             <router-link to="/players" class="navbar-item">Players</router-link>
           </div>
           <div class="navbar-end">
-            <router-link to="/matches/new" class="navbar-item" v-if="isAuthorized(currentUser)">
+            <router-link to="/matches/new" class="navbar-item"
+                         v-if="isAuthorized(currentUser.userClaims)">
               New Match
             </router-link>
-            <router-link to="/players/new" class="navbar-item" v-if="isAuthorized(currentUser)">
+            <router-link to="/players/new" class="navbar-item"
+                         v-if="isAuthorized(currentUser.userClaims)">
               New Player
             </router-link>
-            <router-link to="/auth/signin" class="navbar-item" v-if="!isAuthorized(currentUser)">
+            <router-link to="/auth/signin" class="navbar-item"
+                         v-if="!isAuthorized(currentUser.userClaims)">
               Sign In
             </router-link>
-            <div class="navbar-item has-dropdown is-hoverable" v-if="isAuthorized(currentUser)">
+            <div class="navbar-item has-dropdown is-hoverable"
+                 v-if="isAuthorized(currentUser.userClaims)">
               <a class="navbar-link">
                 <figure class="avatar image is-24x24">
-                  <img :src="currentUser.photoURL">
+                  <img :src="currentUser.account.photoURL">
                 </figure>
-                {{ currentUser.displayName }}
+                {{ currentUser.account.displayName }}
               </a>
               <div class="navbar-dropdown">
                 <router-link to="/auth/signout" class="navbar-item">

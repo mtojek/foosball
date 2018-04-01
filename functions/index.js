@@ -58,3 +58,37 @@ exports.onUpdateLeaderboard = functions.database.ref('matches/{uid}')
         return true;
       });
   });
+
+
+function isAdmin(user) {
+  let admin = false;
+  user.providerData.forEach(profile => {
+    if (profile.providerId === 'github.com' && profile.uid === '14044910') {
+      admin = true;
+    }
+  });
+  return admin;
+}
+
+exports.onUserSignup = functions.auth.user().onCreate(event => {
+  const user = event.data;
+  if (isAdmin(user)) {
+    const customClaims = {
+      admin: true,
+    };
+
+    return admin.auth().setCustomUserClaims(user.uid, customClaims)
+      .then(() => {
+        // Update real-time database to notify client to force refresh.
+        const metadataRef = admin.database().ref("metadata/" + user.uid);
+        // Set the refresh time to the current UTC timestamp.
+        // This will be captured on the client to force a token refresh.
+        return metadataRef.set({refreshTime: new Date().getTime()});
+      })
+      .catch(error => {
+        console.log(error);
+        return false;
+      });
+  }
+  return true;
+});

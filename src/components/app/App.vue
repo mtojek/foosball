@@ -7,10 +7,11 @@
 </template>
 
 <script>
+import jwtDecode from 'jwt-decode';
 import AppFooter from '@/components/app/AppFooter';
 import AppHeader from '@/components/app/AppHeader';
 import AppMain from '@/components/app/AppMain';
-import { auth } from '@/firebaseapp/auth';
+import { auth, CustomClaimsUpdater } from '@/firebaseapp/auth';
 
 export default {
   name: 'App',
@@ -21,14 +22,32 @@ export default {
   },
   data() {
     return {
-      currentUser: null,
+      currentUser: {
+        account: null,
+        userClaims: null,
+      },
       isAuthStateLoaded: false,
     };
   },
   mounted() {
-    auth.onAuthStateChanged((user) => {
-      this.currentUser = user;
+    auth.onIdTokenChanged((user) => {
+      this.currentUser = {
+        account: user,
+        userClaims: { admin: false },
+      };
+
+      if (user) {
+        const that = this;
+        user.getIdToken().then((idToken) => {
+          that.currentUser.userClaims.admin = jwtDecode(idToken).admin === true;
+        });
+      }
+
       this.isAuthStateLoaded = true;
+    });
+
+    auth.onAuthStateChanged((user) => {
+      CustomClaimsUpdater.setUser(user);
     });
   },
 };

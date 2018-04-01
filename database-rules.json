@@ -70,9 +70,7 @@
       },
       ".read": "true"
     },
-    ".read": "auth != null",
-    ".write": "auth != null"
+    ".read": "auth != null && auth.token != null && auth.token.admin === true",
+    ".write": "auth != null && auth.token != null && auth.token.admin === true"
   }
 }
-
-
