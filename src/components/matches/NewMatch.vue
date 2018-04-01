@@ -9,7 +9,8 @@
           <div class="select">
             <select v-model="newMatch.team_a.first" required>
               <option :value="null">Select player</option>
-              <option v-for="player in players" :key="player['.key']" :value="player['.key']">
+              <option v-for="player in getActivePlayers(players)" :key="player['.key']"
+                      :value="player['.key']">
                 {{ player.name }}
               </option>
             </select>
@@ -17,7 +18,8 @@
           <div class="select">
             <select v-model="newMatch.team_a.second" required>
               <option :value="null">Select player</option>
-              <option v-for="player in players" :key="player['.key']" :value="player['.key']">
+              <option v-for="player in getActivePlayers(players)" :key="player['.key']"
+                      :value="player['.key']">
                 {{ player.name }}
               </option>
             </select>
@@ -28,7 +30,8 @@
           <div class="select">
             <select v-model="newMatch.team_b.first" required>
               <option :value="null">Select player</option>
-              <option v-for="player in players" :key="player['.key']" :value="player['.key']">
+              <option v-for="player in getActivePlayers(players)" :key="player['.key']"
+                      :value="player['.key']">
                 {{ player.name }}
               </option>
             </select>
@@ -36,7 +39,8 @@
           <div class="select">
             <select v-model="newMatch.team_b.second" required>
               <option :value="null">Select player</option>
-              <option v-for="player in players" :key="player['.key']" :value="player['.key']">
+              <option v-for="player in getActivePlayers(players)" :key="player['.key']"
+                      :value="player['.key']">
                 {{ player.name }}
               </option>
             </select>
@@ -65,7 +69,7 @@
 </template>
 
 <script>
-import { db } from '@/firebaseapp/database';
+import { db, getActivePlayers } from '@/firebaseapp/database';
 import router from '@/router';
 
 function createNewMatch() {
@@ -109,6 +113,7 @@ export default {
         router.push({ name: 'Home' });
       }
     },
+    getActivePlayers,
   },
 };
 </script>

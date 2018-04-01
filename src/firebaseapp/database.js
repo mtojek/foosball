@@ -8,3 +8,5 @@ if (!status.initialiazed) {
 export const db = firebase.database();
 
 export const getPlayerName = (players, uid) => players.find(p => p['.key'] === uid).name;
+
+export const getActivePlayers = players => players.filter(p => !p.deleted);
