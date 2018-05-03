@@ -2,7 +2,7 @@
   <div class="app-main">
     <div class="container">
       <div class="section">
-        <router-view/>
+        <router-view :currentUser="currentUser"/>
       </div>
     </div>
   </div>
@@ -11,6 +11,7 @@
 <script>
 export default {
   name: 'AppMain',
+  props: ['currentUser'],
 };
 </script>
 

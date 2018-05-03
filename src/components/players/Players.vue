@@ -6,13 +6,13 @@
         <thead>
         <tr>
           <th>Name</th>
-          <th>Actions</th>
+          <th v-if="isAuthorized(currentUser.userClaims)">Actions</th>
         </tr>
         </thead>
         <tbody v-for="(player, index) in getActivePlayers(players)" :key="index">
         <tr>
           <td>{{ player.name }}</td>
-          <td>
+          <td v-if="isAuthorized(currentUser.userClaims)">
             <button class="button is-small is-danger" v-on:click="deletePlayer(player['.key'])">
               Delete
             </button>
@@ -26,6 +26,7 @@
 
 <script>
 import { db, getActivePlayers } from '@/firebaseapp/database';
+import { isAuthorized } from '@/firebaseapp/auth';
 
 export default {
   name: 'Players',
@@ -43,7 +44,9 @@ export default {
       });
     },
     getActivePlayers,
+    isAuthorized,
   },
+  props: ['currentUser'],
 };
 </script>
 

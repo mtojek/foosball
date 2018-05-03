@@ -1,7 +1,7 @@
 <template>
   <div id="app" v-if="isAuthStateLoaded">
     <app-header :currentUser="currentUser"/>
-    <app-main/>
+    <app-main :currentUser="currentUser"/>
     <app-footer/>
   </div>
 </template>

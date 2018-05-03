@@ -9,7 +9,7 @@
           <th>Team A</th>
           <th>Team B</th>
           <th>Score</th>
-          <th>Actions</th>
+          <th v-if="isAuthorized(currentUser.userClaims)">Actions</th>
         </tr>
         </thead>
         <tbody v-for="(match, index) in matches.slice().reverse()" :key="index">
@@ -20,7 +20,7 @@
           <td>{{ getPlayerName(players, match.team_b.first) + ", "
             + getPlayerName(players, match.team_b.second) }}</td>
           <td class="score">{{ match.team_a.score }} : {{ match.team_b.score }}</td>
-          <td>
+          <td v-if="isAuthorized(currentUser.userClaims)">
             <button class="button is-small is-danger" v-on:click="deleteMatch(match['.key'])">
               Delete
             </button>
@@ -35,6 +35,7 @@
 <script>
 import dateFormat from 'dateformat';
 import { db, getPlayerName } from '@/firebaseapp/database';
+import { isAuthorized } from '@/firebaseapp/auth';
 
 export default {
   name: 'Matches',
@@ -48,7 +49,9 @@ export default {
       this.$firebaseRefs.matches.child(matchId).remove();
     },
     getPlayerName,
+    isAuthorized,
   },
+  props: ['currentUser'],
 };
 </script>
 
